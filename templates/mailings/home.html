@@ -1,0 +1,10 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+<h1>Сервис управления рассылками</h1>
+<p>Здесь вы можете управлять клиентами, сообщениями и рассылками.</p>
+
+<a class="btn" href="{% url 'mailings:recipient_list' %}">Клиенты</a>
+<a class="btn" href="{% url 'mailings:message_list' %}">Сообщения</a>
+<a class="btn" href="{% url 'mailings:mailing_list' %}">Рассылки</a>
+{% endblock %}

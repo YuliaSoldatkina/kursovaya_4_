@@ -1,0 +1,31 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+<h1>Клиенты</h1>
+<a class="btn" href="{% url 'mailings:recipient_create' %}">Добавить клиента</a>
+
+<table>
+    <tr>
+        <th>Email</th>
+        <th>Ф. И. О.</th>
+        <th>Комментарий</th>
+        <th>Действия</th>
+    </tr>
+    {% for recipient in recipients %}
+    <tr>
+        <td>{{ recipient.email }}</td>
+        <td>{{ recipient.full_name }}</td>
+        <td>{{ recipient.comment }}</td>
+        <td>
+            <a class="btn" href="{% url 'mailings:recipient_detail' recipient.pk %}">Просмотр</a>
+            <a class="btn" href="{% url 'mailings:recipient_update' recipient.pk %}">Редактировать</a>
+            <a class="btn btn-danger" href="{% url 'mailings:recipient_delete' recipient.pk %}">Удалить</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">Клиенты пока не добавлены.</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
