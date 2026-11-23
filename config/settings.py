@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mailings',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -131,10 +132,13 @@ MAILERS = {
 MAILERS = {
     'default': {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-        'OPTIONS': {
-            'from_email': 'noreply@mailing-service.local',
-        },
     },
 }
 
 DEFAULT_FROM_EMAIL = 'noreply@mailing-service.local'
+
+
+LOGIN_REDIRECT_URL = '/'
+
+
+LOGOUT_REDIRECT_URL = '/'

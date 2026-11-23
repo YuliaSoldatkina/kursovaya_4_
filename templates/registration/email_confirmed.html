@@ -1,0 +1,8 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+<h1>Email подтверждён</h1>
+<p>Спасибо! Ваш email успешно подтверждён.</p>
+
+<a class="btn" href="{% url 'mailings:home' %}">На главную</a>
+{% endblock %}

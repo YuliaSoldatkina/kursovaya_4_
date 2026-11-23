@@ -1,0 +1,12 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+<h1>Подтвердите email</h1>
+<p>
+    Мы отправили ссылку для подтверждения email на адрес:
+    <strong>{{ email }}</strong>
+</p>
+<p>
+    Так как проект работает в тестовом режиме, ссылка также отображается в терминале PyCharm.
+</p>
+{% endblock %}
