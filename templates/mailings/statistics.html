@@ -1,0 +1,36 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+<h1>Статистика</h1>
+
+<table>
+    <tr>
+        <th>Показатель</th>
+        <th>Значение</th>
+    </tr>
+    <tr>
+        <td>Общее количество рассылок</td>
+        <td>{{ statistics.total_mailings }}</td>
+    </tr>
+    <tr>
+        <td>Количество активных рассылок</td>
+        <td>{{ statistics.active_mailings }}</td>
+    </tr>
+    <tr>
+        <td>Количество уникальных получателей</td>
+        <td>{{ statistics.total_recipients }}</td>
+    </tr>
+    <tr>
+        <td>Успешные попытки отправки</td>
+        <td>{{ statistics.successful_attempts }}</td>
+    </tr>
+    <tr>
+        <td>Неуспешные попытки отправки</td>
+        <td>{{ statistics.failed_attempts }}</td>
+    </tr>
+    <tr>
+        <td>Количество отправленных сообщений</td>
+        <td>{{ statistics.sent_messages }}</td>
+    </tr>
+</table>
+{% endblock %}

@@ -1,11 +1,8 @@
+from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
-from .models import Mailing
-
-from django import forms
-
-from .models import Message, Recipient
+from .models import Mailing, Message, Recipient
 
 
 class RecipientForm(forms.ModelForm):
@@ -26,7 +23,6 @@ class MessageForm(forms.ModelForm):
         }
 
 
-
 class MailingForm(forms.ModelForm):
     class Meta:
         model = Mailing
@@ -43,9 +39,19 @@ class MailingForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
+
         for field_name in ['start_time', 'end_time']:
             self.fields[field_name].input_formats = ['%Y-%m-%dT%H:%M']
+
+        if self.user and not self.user.groups.filter(name='Менеджер').exists():
+            self.fields['message'].queryset = Message.objects.filter(
+                owner=self.user
+            )
+            self.fields['recipients'].queryset = Recipient.objects.filter(
+                owner=self.user
+            )
 
     def clean_start_time(self):
         start_time = self.cleaned_data['start_time']

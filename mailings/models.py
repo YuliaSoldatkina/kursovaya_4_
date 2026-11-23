@@ -1,8 +1,15 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
 
 class Recipient(models.Model):
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name='Владелец',
+        related_name='recipients',
+    )
     email = models.EmailField(
         'Email',
         unique=True,
@@ -25,6 +32,12 @@ class Recipient(models.Model):
 
 
 class Message(models.Model):
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name='Владелец',
+        related_name='messages',
+    )
     subject = models.CharField(
         'Тема письма',
         max_length=255,
@@ -42,6 +55,12 @@ class Message(models.Model):
 
 
 class Mailing(models.Model):
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name='Владелец',
+        related_name='mailings',
+    )
     STATUS_CREATED = 'Создана'
     STATUS_STARTED = 'Запущена'
     STATUS_COMPLETED = 'Завершена'
