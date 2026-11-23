@@ -1,0 +1,20 @@
+# Виртуальное окружение
+venv/
+.venv/
+
+# Кеш Python
+__pycache__/
+*.py[cod]
+
+# Локальная база данных
+db.sqlite3
+
+# Файлы PyCharm
+.idea/
+
+# Файлы Poetry
+poetry.lock
+poetry.toml
+
+# Переменные окружения
+.env
